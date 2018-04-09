@@ -1,0 +1,3 @@
+verificationToken,password,username,mobile,emailId,lastname,firstname,status,deleteStatus,verificationStatus,photo
+156,bob123,bob12,7894561230,bob@gmail.com,david,bob,active,disbable,pending,
+147,john23,john11,3214567890,john@gmail.com,player,john,active,disbable,pending,
