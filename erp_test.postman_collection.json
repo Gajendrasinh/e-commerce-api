@@ -1,0 +1,143 @@
+{
+	"info": {
+		"_postman_id": "c03ea4b6-c7a7-4c84-8c69-76d1bb5234df",
+		"name": "erp_test",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "http://localhost:4002/api/addProduct",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp7ImVtYWlsIjoiYWJjQGFiYy5jb20iLCJyb2xlIjoiYWRtaW4iLCJpZCI6IjVhYzlkN2FmNTY3YjJjMDgxYzJkZjkzYiJ9LCJhbGdvcml0aG0iOiJIUzI1NiIsImV4cCI6MTUyMzUzODk5OSwiaWF0IjoxNTIzMTc3NTU5fQ.CGi6331cdgzw-FQIJk5fz6kANnLoJDi_2jYWrIJqf2A"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\":\"iphone\",\n\t\"description\":\"fdsfjsfhsafhjddshfjksfjklsd\",\n\t\"price\":\"26000\",\n\t\"sellerId\":\"5ac9d7af567b2c081c2df93b\",\n\t\"available\":\"true\",\n\t\"status\":\"true\",\n\t\"catagory\":\"5ac9e46428f6641c5861c81d\"\n}"
+				},
+				"url": "http://localhost:4002/api/addProduct"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4002/api/addCategory",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"categoryName\":\"Television\",\n\"productType\":\"5ac9e39688cb631c98830930\"\n}"
+				},
+				"url": "http://localhost:4002/api/addCategory"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4002/api/AddProductType",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "auth",
+						"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRoIjp7ImVtYWlsIjoiYWJjQGFiYy5jb20iLCJyb2xlIjoiYWRtaW4iLCJpZCI6IjVhYzlkN2FmNTY3YjJjMDgxYzJkZjkzYiJ9LCJhbGdvcml0aG0iOiJIUzI1NiIsImV4cCI6MTUyMzUzODk5OSwiaWF0IjoxNTIzMTc3NTU5fQ.CGi6331cdgzw-FQIJk5fz6kANnLoJDi_2jYWrIJqf2A"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"productType\":\"Electronics\",\n\"productTypeDesc\":\"All Types of Electronics\"\n}\t"
+				},
+				"url": "http://localhost:4002/api/AddProductType"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4002/api/adminLogin",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"email\":\"abc@abc.com\",\n    \"password\":\"abc\"\n}"
+				},
+				"url": "http://localhost:4002/api/adminLogin"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4002/api/register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"email\":\"abc@abc.com\",\n    \"password\":\"abc\",\n    \"firstname\":\"john\",\n    \"lastname\":\"Doe\",\n    \"mobile\":\"987654321\",\n    \"username\":\"johnDoe\"\n}"
+				},
+				"url": "http://localhost:4002/api/register"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4002/api/updateProduct",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"ids\":[\"5ac9e4d440203821e0288ea1\"],\n\"catagory\":\"5ac9e46428f6641c5861c81d\"\n}"
+				},
+				"url": "http://localhost:4002/api/updateProduct"
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:4002/api/updateCategory",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"catagory\":\"5ac9e46428f6641c5861c81d\",\n\t\"categoryName\":\"Mobile Phones\",\n\t\"ids\":[\"5ac9e46428f6641c5861c81d\"]\n}"
+				},
+				"url": "http://localhost:4002/api/updateCategory"
+			},
+			"response": []
+		}
+	]
+}

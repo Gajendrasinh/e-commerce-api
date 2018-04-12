@@ -11,7 +11,6 @@ var productSchema = new Schema({
     deleteStatus: { type: Boolean, defalut: false },
     image: { type: String },
     catagory: { type: Schema.Types.ObjectId, ref: 'productCategory' },
-
 });
 var CategorySchema = new Schema({
     categoryName: { type: String, required: true, unique: true },
