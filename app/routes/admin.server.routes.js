@@ -11,13 +11,13 @@ var storage = multer.diskStorage({
 
 var upload = multer({ storage: storage }).single('photo');
 
-
 module.exports = function(app, express){
     // app.use(globalMethods.checkAccess)
     var admin  = require('../controllers/admin.server.controller');
     var product = require('../controllers/product.server.controller');
     var router = express.Router();
     
+    router.post('/adminRegister', admin.register);
     router.post('/adminLogin', admin.login);
     router.post('/adminForgotPassword', admin.forgotPassword);
     router.post('/adminChangePassword', globalMethods.checkAuth, admin.changePassword);

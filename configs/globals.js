@@ -247,10 +247,8 @@ message : It is used for check all required parameter is available in req.body o
 
 */
 
-exports.checkRequireParam = (params, req, next) => {
-    if (Array.isArray(params)) {
-        log('params', params)
-        log('req', req)
+exports.checkRequireParam = (params, req) => {
+    if (Array.isArray(params)) {       
         let calls = [];
         let erData = [];
         params.forEach((param) => {

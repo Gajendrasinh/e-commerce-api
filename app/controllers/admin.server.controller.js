@@ -6,6 +6,64 @@ var moment = require('moment');
 
 
 /*************
+Purpose: user register
+Parameter: {
+	 "email":"john@doe.com",
+    "password":"john",
+    "firstname":"john",
+    "lastname":"Doe",
+    "mobile":"987654321",
+    "username":"johnDoe"
+}
+Return: JSON String
+****************/
+exports.register = (req, res, next) => {
+    var params = ['email', 'firstname', 'lastname', 'contactno', 'username', 'password'];
+    var error = globalMethods.checkRequireParam(params, req);    
+    if (error.length > 0) {
+        res.send({ status: 0, message: error });
+    } else {
+        // var photo = req.file.filename;
+        var username = req.body.username;
+        var email = req.body.email;
+        var contactno = req.body.contactno;
+        //  check duplicate username or emailid or mobile
+        Admin.find({ emailId: email }).exec((err, data) => {
+            if (err) {
+                res.send({ status: 0, message: err });
+            } else if (data.length > 0) {
+                res.send({ status: 0, message: 'Admin is already register Please login using email' });
+            } else {
+                payload = { 'email': email }
+                var pass = new Admin();
+                var password = pass.generateHash(req.body.password);
+                var token = globalMethods.generateToken(payload);
+                var newUser = new Admin();
+                newUser.firstname = req.body.firstname;
+                newUser.lastname = req.body.lastname;
+                newUser.emailId = email;
+                newUser.contactno = contactno;
+                newUser.username = username;
+                newUser.password = password;
+                newUser.verificationToken = token;
+                newUser.status = true;
+                newUser.save((err, data) => {
+                    if (err) {
+                        res.send({ status: 0, message: err });
+                    } else {
+                        globalMethods.registrationEmail(token, req.body.email, (err, resp) => {
+                            res.send(sendSuccess('Admin Registeration SuccessFul'));
+                        });
+                    }
+                });
+            }
+        });
+
+    }
+
+};
+
+/*************
 Purpose: Admin login
 Parameter: {
     email:abc@gmail.com,
