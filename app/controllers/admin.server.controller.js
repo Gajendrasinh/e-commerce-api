@@ -19,7 +19,7 @@ Return: JSON String
 ****************/
 exports.register = (req, res, next) => {
     var params = ['email', 'firstname', 'lastname', 'contactno', 'username', 'password'];
-    var error = globalMethods.checkRequireParam(params, req);    
+    var error = globalMethods.checkRequireParam(params, req);
     if (error.length > 0) {
         res.send({ status: 0, message: error });
     } else {
@@ -71,51 +71,51 @@ Parameter: {
 }
 Return: JSON String
 ****************/
-exports.login = (req, res) => {
+exports.login = (req, res, next) => {
     var params = ['email', 'password'];
     var error = globalMethods.checkRequireParam(params, req);
 
     if (error.length > 0) {
         res.send({ status: 0, message: error });
     } else {
-
-        Admin.find({ emailId: req.body.email, password: req.body.password }).exec((err, adminDetail) => {
-            if (err) {
-                res.send({ status: 0, message: error });
-            } else if (adminDetail.length > 0) {
-
-                adminDetail = adminDetail[0];
-                var payload = {
-                    email: adminDetail.emailId,
-                    role: 'admin',
-                    id: adminDetail._id
-                }
-                var token = globalMethods.getToken(payload);
-
-                var newAuthToken1 = new authTokenData();
-                newAuthToken1.email = req.body.email;
-                // newAuthToken1.id = adminDetail._id;
-                newAuthToken1.token = token;
-                newAuthToken1.status = 'active';
-                newAuthToken1.role = 'admin';
-
-                var d = Date.now();
-                var t = d + 86400000;
-                console.log(d);
-                console.log(t);
-                newAuthToken1.timestamp = t;
-                newAuthToken1.save((err, data) => {
-                    if (err) {
-                        res.send({ status: 0, message: err });
-                    } else {
-                        res.send({ status: 1, access_token: token, data: adminDetail, message: 'Logged in successfully' });
+        Admin.findOne({ emailId: req.body.email }).then(adminDetail => {
+            if (adminDetail != null) {
+                var encPass = new Admin();
+                var password = encPass.validPassword(req.body.password, adminDetail.password)
+                if (password == true) {
+                    var payload = {
+                        email: adminDetail.emailId,
+                        role: 'admin',
+                        id: adminDetail._id
                     }
-                });
-                // res.send({status:1 , message:'Login successfully', access_token:token, data:adminDetail});
+                    var token = globalMethods.getToken(payload);
+                    var newAuthToken1 = new authTokenData();
+                    newAuthToken1.email = req.body.email;
+                    // newAuthToken1.id = adminDetail._id;
+                    newAuthToken1.token = token;
+                    newAuthToken1.status = 'active';
+                    newAuthToken1.role = 'admin';
+
+                    var d = Date.now();
+                    var t = d + 86400000;
+                    console.log(d);
+                    console.log(t);
+                    newAuthToken1.timestamp = t;
+                    newAuthToken1.save((err, data) => {
+                        if (err) {
+                            res.send({ status: 0, message: err });
+                        } else {
+                            res.send({ status: 1, access_token: token, data: adminDetail, message: 'Logged in successfully' });
+                        }
+                    });
+                    // res.send({status:1 , message:'Login successfully', access_token:token, data:adminDetail});
+                } else {
+                    res.send(sendErr('Invalid credentail'));
+                }
             } else {
-                res.send({ status: 0, message: 'Invalid credentail' });
+                res.send({ status: 0, message: 'Use Not Found' });
             }
-        });
+        }).catch(err => next(err));
     }
 }
 
