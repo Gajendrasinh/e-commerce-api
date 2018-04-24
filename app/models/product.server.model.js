@@ -10,25 +10,26 @@ var productSchema = new Schema({
     status: { type: Boolean, required: true, defalut: true },
     deleteStatus: { type: Boolean, defalut: false },
     image: { type: String },
-    catagory: { type: Schema.Types.ObjectId, ref: 'productCategory' },
+    catagory_id: { type: Schema.Types.ObjectId, ref: 'category' },
+    sub_catagory_id: { type: Schema.Types.ObjectId, ref: 'sub_category' },
 });
 var CategorySchema = new Schema({
     categoryName: { type: String, required: true, unique: true },
     categoryDesc: { type: String, default: "" },
     deleteStatus: { type: Boolean, defalut: false },
-    productType: { type: Schema.Types.ObjectId, ref: 'productType' }
 });
-var productTypeSchema = new Schema({
-    productType: { type: String, required: true, unique: true },
-    productTypeDesc: { type: String, default: "" },
+var SubCategorySchema = new Schema({
+    category_id: { type: String, required: true, unique: true },
+    SubCategoryName: { type: String, required: true, unique: true },
+    SubCategoryDesc: { type: String, default: "" },
     deleteStatus: { type: Boolean, defalut: false },
 });
 var productModel = mongoose.model('product', productSchema);
-var category = mongoose.model('productCategory', CategorySchema);
-var productType = mongoose.model('productType', productTypeSchema);
+var category = mongoose.model('category', CategorySchema);
+var subCategory = mongoose.model('sub_category', SubCategorySchema);
 
 module.exports = {
     Product: productModel,
     Category: category,
-    productType: productType
+    SubCategory: subCategory
 }
