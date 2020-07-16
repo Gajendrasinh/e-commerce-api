@@ -29,7 +29,7 @@
     "json-2-csv": "^2.2.0",
     "json2csv": "^4.0.2",
     "jsonwebtoken": "^7.4.3",
-    "lodash": "^4.17.5",
+    "lodash": "^4.17.19",
     "method-override": "^2.3.10",
     "moment": "^2.21.0",
     "mongodb": "^2.2.35",
