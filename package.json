@@ -42,7 +42,7 @@
     "nodemailer": "^4.6.2",
     "officegen": "^0.4.5",
     "officegen-docx-table": "^0.3.8",
-    "papaparse": "^4.3.7",
+    "papaparse": "^5.2.0",
     "path": "^0.12.7",
     "pdfkit": "^0.8.3",
     "tempfile": "^2.0.0",
