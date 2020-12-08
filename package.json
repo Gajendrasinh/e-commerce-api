@@ -21,7 +21,7 @@
     "csvtojson": "^1.1.9",
     "express": "^4.16.2",
     "express-session": "^1.15.6",
-    "fast-csv": "^2.4.0",
+    "fast-csv": "^4.3.6",
     "file-system": "^2.2.2",
     "fs": "0.0.1-security",
     "html-to-pdf": "^0.1.11",
