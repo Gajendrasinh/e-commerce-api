@@ -39,7 +39,7 @@
     "multiparty": "^4.1.3",
     "mv": "^2.1.1",
     "node-cron": "^1.2.1",
-    "nodemailer": "^4.6.2",
+    "nodemailer": "^6.4.16",
     "officegen": "^0.4.5",
     "officegen-docx-table": "^0.3.8",
     "papaparse": "^4.3.7",
