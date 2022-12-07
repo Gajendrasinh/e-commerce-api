@@ -19,7 +19,7 @@
     "cors": "^2.8.4",
     "csvjson": "^5.0.0",
     "csvtojson": "^1.1.9",
-    "express": "^4.16.2",
+    "express": "^4.17.3",
     "express-session": "^1.15.6",
     "fast-csv": "^2.4.0",
     "file-system": "^2.2.2",
